@@ -1,0 +1,143 @@
+body {
+  background: #000;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+#workerConsole {
+  flex: 1;
+  width: 100%;
+}
+
+.container {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.column {
+  flex: 1;
+  min-width: 0;
+}
+
+.title {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+              "Helvetica Neue", Arial, sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  color: #4c4d4c;
+  margin: 20px 10px 8px 0;
+  letter-spacing: 0.5px;
+}
+
+.text {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+              "Helvetica Neue", Arial, sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  color: #4c4d4c;
+  margin: 20px 10px 8px 0;
+  letter-spacing: 0.5px;
+}
+
+textarea {
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #000 !important;
+  color: #fff !important;
+  border: 1px solid #444;
+  padding: 8px;
+  font-family: 'Fira Code', monospace;
+  font-size: 14px;
+  line-height: 1.5;
+  white-space: pre;
+  resize: vertical;
+  overflow-y: auto;
+}
+
+
+/* Crosshair button */
+.crosshair-btn {
+  --corner-offset: -2px;
+  --corner-thickness: 1.5px;
+  --corner-color: #4ea277;
+
+  margin-left: 30px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  color: #fff;
+  background: rgba(255,255,255,0.10);
+  border: 1px solid #2c5639;
+  padding: 9px 50px 10px 50px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  position: relative;
+  cursor: pointer;
+  transition: background 0.15s ease;
+  overflow: visible;
+}
+
+.crosshair-btn:hover {
+  background: rgba(0, 255, 0, 0.08);
+}
+
+.crosshair-btn:active {
+  background: limegreen;
+  animation: flicker 0.2s;
+}
+
+@keyframes flicker {
+  0%   { background: limegreen; }
+  50%  { background: #00ff00; }
+  100% { background: limegreen; }
+}
+
+.crosshair-btn::before,
+.crosshair-btn::after,
+.crosshair-btn .c1,
+.crosshair-btn .c2 {
+  content: "";
+  position: absolute;
+  width: 12px;
+  height: 8px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.crosshair-btn::before {
+  top: var(--corner-offset);
+  left: var(--corner-offset);
+  border-top: var(--corner-thickness) solid var(--corner-color);
+  border-left: var(--corner-thickness) solid var(--corner-color);
+}
+
+.crosshair-btn::after {
+  top: var(--corner-offset);
+  right: var(--corner-offset);
+  border-top: var(--corner-thickness) solid var(--corner-color);
+  border-right: var(--corner-thickness) solid var(--corner-color);
+}
+
+.crosshair-btn .c1 {
+  bottom: var(--corner-offset);
+  left: var(--corner-offset);
+  border-bottom: var(--corner-thickness) solid var(--corner-color);
+  border-left: var(--corner-thickness) solid var(--corner-color);
+}
+
+.crosshair-btn .c2 {
+  bottom: var(--corner-offset);
+  right: var(--corner-offset);
+  border-bottom: var(--corner-thickness) solid var(--corner-color);
+  border-right: var(--corner-thickness) solid var(--corner-color);
+}

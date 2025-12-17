@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <script src="https://scheduler.distributed.computer/dcp-client/dcp-client.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="title">DistibutiveWorker minimal example</div>
+  <div class="text">github link</div>
+  <button id="work-btn" class="crosshair-btn" onclick="toggleWorker()">
+    <span class="btn-text">START</span>
+    <svg width="16" height="16" viewBox="0 0 200 350" fill="currentColor">
+      <path d="M189.1406 348.75 L41.9062 348.75 L21.2344 328.0781 L153.7031 328.0781 L21.0938 195.4688 L35.8594 180.7031 L168.3281 313.3125 L168.3281 180.8438 L189.1406 201.6562 L189.1406 348.75 Z"/>
+    </svg>
+    <span class="c1"></span>
+    <span class="c2"></span>
+  </button>
+
+  <textarea id="workerConsole"></textarea>
+
+  <script src="worker.js"></script>
+</body>
+</html>
