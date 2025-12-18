@@ -3,7 +3,7 @@
 A **simple implementation of the DistributiveWorker class** with full event logging and configuration options. This template provides a starting point for anyone wanting to implement a DCP Browser Worker in a web page with real-time console output and complete sandbox monitoring.
 
 ## Try it
-<a href="https://dcp.network" target="_blank" rel="noopener noreferrer">dcp.network</a>
+[![Live Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://dcp.network)
 
 ## Overview
 
