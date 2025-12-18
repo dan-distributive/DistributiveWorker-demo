@@ -1,120 +1,118 @@
-body {
-  background: #000;
-}
-
+/* =========================================================
+   Base & Layout
+   ========================================================= */
 html, body {
   height: 100%;
   margin: 0;
+  background: #000;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
 body {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
 }
 
-#workerConsole {
-  flex: 1;
-  width: 100%;
-}
-
-.container {
+.page-gutter {
   display: flex;
-  gap: 10px;
-  align-items: flex-start;
+  flex-direction: column;
+  height: 100%;
+  padding: 16px;
+  box-sizing: border-box;
 }
 
-.column {
+.app {
   flex: 1;
-  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 0; /* ensures textarea can stretch */
 }
 
+/* =========================================================
+   Typography
+   ========================================================= */
 .title {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-               "Helvetica Neue", Arial, sans-serif;
+  margin: 10px 0 10px;
   font-weight: 600;
-  font-size: 24px;
+  font-size: clamp(24px, 5vw, 32px);
   color: #bababa;
-  margin: 30px 15px 10px 10px;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.4px;
 }
 
 .text-with-link {
   display: flex;
-  flex-wrap: wrap;           /* allow text to wrap on small screens */
-  align-items: center;       /* vertically align link to text */
-  gap: 8px;                  /* spacing between text and link */
-  max-width: 570px;          /* limit paragraph width */
-  margin: 10px 10px 10px 10px;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  max-width: 570px;
+  margin: 10px 0 10px;
 }
 
 .text {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-               "Helvetica Neue", Arial, sans-serif;
-  font-weight: 300;
-  font-size: 14px;
-  color: #808080;
   margin: 0;
-  letter-spacing: 0.6px;
-  flex: 1 1 auto;           /* allow text to take available width */
-  min-width: 0;             /* allow wrapping in flex container */
+  font-weight: 300;
+  font-size: clamp(14px, 4.5vw, 16px);
+  color: #808080;
+  line-height: 1.4;
+  letter-spacing: 0.3px;
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 .link {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-               "Helvetica Neue", Arial, sans-serif;
   font-weight: 300;
-  font-size: 16px;
+  font-size: clamp(14px, 4.5vw, 16px);
   color: #6ec495;
   text-decoration: underline;
   text-underline-offset: 2px;
-  letter-spacing: 0.3px;
+  letter-spacing: 0.2px;
   display: inline-flex;
   align-items: center;
-  gap: 4px;                 /* slightly more space between text and arrow */
-  white-space: nowrap;       /* keep link on a single line */
+  gap: 8px;
+  white-space: nowrap;
 }
 
 .link:hover {
   text-decoration-thickness: 2px;
 }
 
-textarea {
+/* =========================================================
+   Button
+   ========================================================= */
+.button-row {
   width: 100%;
-  box-sizing: border-box;
-  background-color: #000 !important;
-  color: #fff !important;
-  border: 1px solid #444;
-  padding: 8px;
-  font-family: 'Fira Code', monospace;
-  font-size: 14px;
-  line-height: 1.5;
-  white-space: pre;
-  resize: vertical;
-  overflow-y: auto;
+  display: flex;
 }
 
+@media (min-width: 601px) {
+  .button-row {
+    justify-content: flex-start;
+    padding-left: 40px;
+  }
+}
 
-/* Crosshair button */
+@media (max-width: 600px) {
+  .button-row {
+    justify-content: center;
+  }
+}
+
 .crosshair-btn {
   --corner-offset: -2px;
   --corner-thickness: 1.5px;
   --corner-color: #4ea277;
 
-  margin-left: 30px;
-  margin-top: 30px;
-  margin-bottom: 30px;
-  color: #fff;
-  background: rgba(255,255,255,0.10);
+  margin: 30px 0 30px;
+  padding: 10px 50px;
+  background: rgba(255, 255, 255, 0.1);
   border: 1px solid #2c5639;
-  padding: 9px 50px 10px 50px;
+  color: #fff;
   font-weight: 600;
-  letter-spacing: 1px;
+  letter-spacing: 0.8px;
   text-transform: uppercase;
   position: relative;
   cursor: pointer;
   transition: background 0.15s ease;
-  overflow: visible;
 }
 
 .crosshair-btn:hover {
@@ -127,11 +125,11 @@ textarea {
 }
 
 @keyframes flicker {
-  0%   { background: limegreen; }
-  50%  { background: #00ff00; }
-  100% { background: limegreen; }
+  0%, 100% { background: limegreen; }
+  50% { background: #00ff00; }
 }
 
+/* Button corner decorations */
 .crosshair-btn::before,
 .crosshair-btn::after,
 .crosshair-btn .c1,
@@ -141,7 +139,6 @@ textarea {
   width: 12px;
   height: 8px;
   pointer-events: none;
-  z-index: 1;
 }
 
 .crosshair-btn::before {
@@ -170,4 +167,45 @@ textarea {
   right: var(--corner-offset);
   border-bottom: var(--corner-thickness) solid var(--corner-color);
   border-right: var(--corner-thickness) solid var(--corner-color);
+}
+
+/* =========================================================
+   Textarea / Console
+   ========================================================= */
+.textarea-wrap {
+  flex: 1;
+  display: flex;
+  min-height: 0;
+  padding-top: 10px;
+}
+
+.textarea-wrap textarea {
+  flex: 1;
+  width: 100%;
+  min-height: 0;
+  box-sizing: border-box;
+  padding: 10px;
+  background-color: #000;
+  color: #fff;
+  border: 1px solid #444;
+  font-family: "Fira Code", monospace;
+  font-size: clamp(12px, 1.5vw, 14px);
+  line-height: 1;
+  white-space: pre;
+  resize: vertical;
+  overflow-y: auto;
+}
+
+/* =========================================================
+   Mobile refinements
+   ========================================================= */
+@media (max-width: 600px) {
+  .text-with-link {
+    max-width: 100%;
+  }
+
+  .title,
+  .text {
+    letter-spacing: 0.2px;
+  }
 }

@@ -123,7 +123,7 @@ async function toggleWorker() {
     worker.on("payment", (payment, paymentAccount, jobAddress, slice) => {
       log(
         `[worker.payment] ` +
-        `payment: ${payment}⊇, ` +
+        `payment: ${payment} ⊇, ` +
         `depositAccount: ${paymentAccount}, ` +
         `jobId: ${jobAddress}, ` +
         `slice: ${slice}`);
@@ -213,7 +213,7 @@ async function toggleWorker() {
 
       // Payment event inside sandbox
       sandbox.on("payment", (payment) => {
-        log(`[sandbox_${sandbox.id}.payment] ${payment}⊇`);
+        log(`[sandbox_${sandbox.id}.payment] ${payment} ⊇`);
       });
 
       // General warnings
