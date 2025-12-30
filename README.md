@@ -26,11 +26,13 @@ If you encounter any issues or have questions, you can reach the team via:
   - Sending results
   - Payment events
   - Connection and disconnection
+  - Errors and Warnings
   - Worker start/stop/end
 - Full logging of `sandbox events`:
   - Ready, job received, slice started/ended
   - Progress updates, metrics (CPU/GPU usage, I/O)
-  - Sandbox errors, warnings, payments
+  - Payment events
+  - Sandbox termination
 - Toggle between starting and stopping the worker
 - Lightweight, single HTML file implementation for quick testing or prototyping
 
@@ -71,10 +73,16 @@ computeGroups: [
   { joinKey: "demo", joinSecret: "dcp" },
 ],
 ```
+
 #### Cores and Utilization
 ```javascript
 cores: { cpu: 4, gpu: 1 },
 utilization: { cpu: 1, gpu: 1 }
+```
+
+#### Sandbox Concurrency
+```javascript
+maxSandboxes: 4
 ```
 
 #### Minimum Wage
@@ -87,11 +95,6 @@ minimumWage: {
 }
 ```
 
-#### Sandbox Concurrency
-```javascript
-maxSandboxes: 4
-```
-
 #### Job Filtering
 ```javascript
 jobIds: false // Or provide an array of job IDs to exclusively run
@@ -100,15 +103,17 @@ jobIds: false // Or provide an array of job IDs to exclusively run
 ### Event Logging
 
 The template logs **all important worker and sandbox events** to a textarea console, including:
-- `worker.fetch` – when new slices are fetched
+- `worker.connect` / `worker.disconnect` / `worker.start` / `worker.stop` / `worker.end` – worker lifecycle
+
+- `worker.fetch` – when new job slices are fetched
 
 - `worker.result` – after sending results
 
 - `worker.payment` – payment received
 
-- `worker.disconnect` / `worker.stop` / `worker.end` – worker lifecycle
+- `worker.error` / `worker.warning` – worker errors and warnings
 
-- `sandbox.ready` / `sandbox.job` / `sandbox.slice` / `sandbox.progress` / `sandbox.metrics` / `sandbox.sliceEnd` / `sandbox.payment` / `sandbox.error` / `sandbox.warning`
+- `sandbox.ready` / `sandbox.job` / `sandbox.slice` / `sandbox.progress` / `sandbox.metrics` / `sandbox.sliceEnd` / `sandbox.payment`
 
 This provides full visibility into worker activity and sandbox execution.
 
