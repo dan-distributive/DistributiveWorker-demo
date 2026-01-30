@@ -96,104 +96,132 @@ body {
   font-size: clamp(12px, 1.5vw, 14px);
 }
 
+
+/* Generic worker-value for payment / origins */
 .worker-value {
   color: #6ec495;
   font-family: "Fira Code", monospace;
   font-size: clamp(12px, 1.5vw, 14px);
+  background: transparent;
+  border: none;
+  padding: 0;
+  display: inline;   /* use inline so it stays with the label */
+  width: 42ch;       /* allow it to shrink/grow naturally */
+  box-sizing: content-box;
+  outline: none;
+}
+
+/* Minimum wage inputs */
+.mw-input {
+  color: #808080;              /* grey default */
+  font-family: "Fira Code", monospace;
+  font-size: clamp(12px, 1.5vw, 14px);
+  background: transparent;      /* no box */
+  border: none;
+  padding: 0;
+  display: inline-block;
+  width: 8ch;                 /* fixed width for numbers */
+  box-sizing: content-box;
+  outline: none;
+  text-align: left;
+  transition: color 0.15s ease;
+}
+
+.mw-input:focus,
+.mw-input:not(:placeholder-shown) {
+  color: #6ec495;              /* green when user types */
+}
+
+
+
+
+
+.worker-section-title {
+  color: #bababa;   /* slightly lighter than #808080 */
+  letter-spacing: 0.4px;
 }
 
 /* =========================================================
    Button
    ========================================================= */
-.button-row {
-  width: 100%;
-  display: flex;
-}
-
-@media (min-width: 601px) {
-  .button-row {
-    justify-content: flex-start;
-    padding-left: 40px;
-  }
-}
-
-@media (max-width: 600px) {
-  .button-row {
+   .crosshair-btn {
+    --corner-offset: -2px;
+    --corner-thickness: 1.5px;
+    --corner-color: #4ea277;
+  
+    width: 180px;              /* fixed width */
+    height: 40px;              /* fixed height */
+    margin: 30px 30px 30px;
+    padding: 0;                /* padding handled by height */
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid #2c5639;
+    color: #fff;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    position: relative;
+    cursor: pointer;
+    transition: background 0.15s ease;
+  
+    display: flex;
+    align-items: center;
     justify-content: center;
   }
-}
-
-.crosshair-btn {
-  --corner-offset: -2px;
-  --corner-thickness: 1.5px;
-  --corner-color: #4ea277;
-
-  margin: 30px 0 30px;
-  padding: 10px 50px;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid #2c5639;
-  color: #fff;
-  font-weight: 600;
-  letter-spacing: 0.8px;
-  text-transform: uppercase;
-  position: relative;
-  cursor: pointer;
-  transition: background 0.15s ease;
-}
-
-.crosshair-btn:hover {
-  background: rgba(0, 255, 0, 0.08);
-}
-
-.crosshair-btn:active {
-  background: limegreen;
-  animation: flicker 0.2s;
-}
-
-@keyframes flicker {
-  0%, 100% { background: limegreen; }
-  50% { background: #00ff00; }
-}
-
-/* Button corner decorations */
-.crosshair-btn::before,
-.crosshair-btn::after,
-.crosshair-btn .c1,
-.crosshair-btn .c2 {
-  content: "";
-  position: absolute;
-  width: 12px;
-  height: 8px;
-  pointer-events: none;
-}
-
-.crosshair-btn::before {
-  top: var(--corner-offset);
-  left: var(--corner-offset);
-  border-top: var(--corner-thickness) solid var(--corner-color);
-  border-left: var(--corner-thickness) solid var(--corner-color);
-}
-
-.crosshair-btn::after {
-  top: var(--corner-offset);
-  right: var(--corner-offset);
-  border-top: var(--corner-thickness) solid var(--corner-color);
-  border-right: var(--corner-thickness) solid var(--corner-color);
-}
-
-.crosshair-btn .c1 {
-  bottom: var(--corner-offset);
-  left: var(--corner-offset);
-  border-bottom: var(--corner-thickness) solid var(--corner-color);
-  border-left: var(--corner-thickness) solid var(--corner-color);
-}
-
-.crosshair-btn .c2 {
-  bottom: var(--corner-offset);
-  right: var(--corner-offset);
-  border-bottom: var(--corner-thickness) solid var(--corner-color);
-  border-right: var(--corner-thickness) solid var(--corner-color);
-}
+  
+  .crosshair-btn:hover {
+    background: rgba(0, 255, 0, 0.08);
+  }
+  
+  .crosshair-btn:active {
+    background: limegreen;
+    animation: flicker 0.2s;
+  }
+  
+  @keyframes flicker {
+    0%, 100% { background: limegreen; }
+    50% { background: #00ff00; }
+  }
+  
+  /* Button corner decorations */
+  .crosshair-btn::before,
+  .crosshair-btn::after,
+  .crosshair-btn .c1,
+  .crosshair-btn .c2 {
+    content: "";
+    position: absolute;
+    width: 12px;
+    height: 8px;
+    pointer-events: none;
+  }
+  
+  .crosshair-btn::before {
+    top: var(--corner-offset);
+    left: var(--corner-offset);
+    border-top: var(--corner-thickness) solid var(--corner-color);
+    border-left: var(--corner-thickness) solid var(--corner-color);
+  }
+  
+  .crosshair-btn::after {
+    top: var(--corner-offset);
+    right: var(--corner-offset);
+    border-top: var(--corner-thickness) solid var(--corner-color);
+    border-right: var(--corner-thickness) solid var(--corner-color);
+  }
+  
+  .crosshair-btn .c1 {
+    bottom: var(--corner-offset);
+    left: var(--corner-offset);
+    border-bottom: var(--corner-thickness) solid var(--corner-color);
+    border-left: var(--corner-thickness) solid var(--corner-color);
+  }
+  
+  .crosshair-btn .c2 {
+    bottom: var(--corner-offset);
+    right: var(--corner-offset);
+    border-bottom: var(--corner-thickness) solid var(--corner-color);
+    border-right: var(--corner-thickness) solid var(--corner-color);
+  }
+  
 
 /* =========================================================
    Textarea / Console
@@ -235,3 +263,81 @@ body {
     letter-spacing: 0.2px;
   }
 }
+
+/* ============================================
+   Radio button color control
+   ============================================ */
+   .radio-option {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    font-family: "Fira Code", monospace;
+    font-size: clamp(12px, 1.5vw, 14px);
+  }
+  
+  /* hide native radio */
+  .radio-option input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  /* radio shell */
+  .custom-radio {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 1.5px solid #555;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s ease;
+  }
+  
+  /* inner dot */
+  .custom-radio::after {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #6ec495;
+    opacity: 0;
+    transform: scale(0.5);
+    transition: all 0.15s ease;
+  }
+  
+  /* checked */
+  .radio-option input:checked + .custom-radio {
+    border-color: #6ec495;
+  }
+  
+  .radio-option input:checked + .custom-radio::after {
+    opacity: 1;
+    transform: scale(1);
+  }
+  
+  /* label colors */
+  .radio-label {
+    color: #808080;
+  }
+  
+  .radio-option input:checked ~ .radio-label {
+    color: #6ec495;
+  }
+  
+  /* hover */
+  .radio-option:hover .radio-label {
+    color: #9adbb7;
+  }
+  
+  .custom-radio {
+    width: 10px;
+    height: 10px;
+  }
+  
+  .custom-radio::after {
+    width: 5px;
+    height: 5px;
+  }
+  
