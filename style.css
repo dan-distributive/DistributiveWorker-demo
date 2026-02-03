@@ -314,36 +314,46 @@ body {
 }
 
 /* =========================================================
-   iOS Safari form normalization
+   iOS Safari form normalization & zoom prevention
    ========================================================= */
 
-   input,
-   textarea,
-   select,
-   button {
-     -webkit-appearance: none;
-     appearance: none;
-     border-radius: 0;
-     background-image: none;
-   }
-   
-   /* Prevent iOS zoom on focus */
-   input,
-   textarea {
-     font-size: 16px;
-   }
-   
-   /* Remove Safari inner shadows */
-   input {
-     -webkit-box-shadow: none;
-     box-shadow: none;
-   }
-   
-   /* Ensure custom radios are truly custom */
-   .radio-option input {
-     -webkit-appearance: none;
-     appearance: none;
-   }
+/* Reset appearance for inputs, textareas, selects, buttons */
+input,
+textarea,
+select,
+button {
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 0;
+  background-image: none;
+  font-family: "Fira Code", monospace;
+  line-height: 1.2;
+}
+
+/* Force minimum font-size 16px on iOS to prevent auto-zoom */
+input,
+textarea,
+select {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%; /* prevent iOS text scaling */
+}
+
+/* Remove inner shadows on iOS Safari */
+input {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+/* Ensure custom radios render correctly */
+.radio-option input {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* Optional: prevent zooming on orientation change or pinch-zoom */
+html {
+  -webkit-text-size-adjust: 100%; /* prevents iOS zooming on focus */
+}
    
 
 
