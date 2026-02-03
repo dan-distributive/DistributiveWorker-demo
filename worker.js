@@ -286,7 +286,14 @@ async function toggleWorker() {
     // Start the worker
     //
     document.querySelector("#work-btn .btn-text").textContent = "STOP";
+    // Start the worker
     await worker.start();
+    // Disable all user input fields
+    const allInputs = document.querySelectorAll(
+      '#payment-account, #max-sandboxes, #allowed-job-id, #allowed-origins, input[name="mw-cpu"], input[name="mw-gpu"], input[name="mw-in"], input[name="mw-out"], input[name="computeGroup"]'
+    );
+    allInputs.forEach(input => input.disabled = true);
+    // Log worker started message
     log(
       `DCP Worker started\n\n` +
       `  Worker identity: ${id.address}\n\n` +
@@ -296,7 +303,6 @@ async function toggleWorker() {
             ? worker.config.computeGroups.map(g => g.joinKey).join(", ")
             : "DCP Global (Public Group)"}`
     );
-    paymentInput.disabled = true;
 
   } else {
     //
