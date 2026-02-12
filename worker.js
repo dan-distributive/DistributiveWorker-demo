@@ -313,6 +313,6 @@ async function toggleWorker() {
     document.querySelector("#work-btn .btn-text").textContent = "STOPPING...";
     await worker.stop();
     worker = null;
-    document.querySelector("#work-btn .btn-text").textContent = "STOPPED";
+    document.querySelector("#work-btn .btn-text").textContent = "START";
   }
 }
