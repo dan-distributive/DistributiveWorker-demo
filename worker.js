@@ -51,10 +51,12 @@ async function toggleWorker() {
     //
     // Set DCP identity for this worker
     //
-      const id = await new dcp.wallet.Keystore(
-        "0x5356d59ec41a45672e4be75a8761e1721f7b48941226f2775722907238f805be","" // web-worker-demo-id
-      );
-    await dcp.identity.set(id);
+    const id = await new dcp.wallet.Keystore(
+      "0x5356d59ec41a45672e4be75a8761e1721f7b48941226f2775722907238f805be","" // web-worker-demo-id
+    );
+    if (!dcp.evaluator.check()) {
+      await dcp.identity.set(id);
+    }
 
     //
     // Configure Worker
